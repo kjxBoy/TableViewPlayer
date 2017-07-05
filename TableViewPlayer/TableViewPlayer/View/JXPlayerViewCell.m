@@ -15,8 +15,6 @@
 
 @interface JXPlayerViewCell ()
 
-
-
 @end
 
 @implementation JXPlayerViewCell
@@ -38,6 +36,7 @@
         _centerView.backgroundColor = [UIColor orangeColor];
         
         _centerView.clipsToBounds = YES;
+        
         _centerView.layer.cornerRadius = 5;
     }
     return _centerView;
@@ -51,5 +50,6 @@
     [self addSubview:self.centerView];
     
 }
+
 
 @end

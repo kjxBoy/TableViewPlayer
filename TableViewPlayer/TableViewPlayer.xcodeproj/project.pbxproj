@@ -10,13 +10,11 @@
 		1838ECA71EFCF29D0092624D /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 1838ECA61EFCF29D0092624D /* UIView+Frame.m */; };
 		1838ECAB1EFCF2CD0092624D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1838ECAA1EFCF2CD0092624D /* ViewController.m */; };
 		1838ECAF1EFCF2EC0092624D /* JXPlayerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1838ECAE1EFCF2EC0092624D /* JXPlayerViewCell.m */; };
-		18402B871F0B4138004FBEB5 /* JXPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18402B861F0B4138004FBEB5 /* JXPlayerView.m */; };
 		18BEAD751EF920B90025FB77 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BEAD741EF920B90025FB77 /* main.m */; };
 		18BEAD781EF920B90025FB77 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BEAD771EF920B90025FB77 /* AppDelegate.m */; };
 		18BEAD7E1EF920B90025FB77 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18BEAD7C1EF920B90025FB77 /* Main.storyboard */; };
 		18BEAD801EF920B90025FB77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18BEAD7F1EF920B90025FB77 /* Assets.xcassets */; };
 		18BEAD831EF920B90025FB77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18BEAD811EF920B90025FB77 /* LaunchScreen.storyboard */; };
-		18BEAD8E1EF926670025FB77 /* JXPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BEAD8D1EF926670025FB77 /* JXPlayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,8 +24,6 @@
 		1838ECAA1EFCF2CD0092624D /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		1838ECAD1EFCF2EC0092624D /* JXPlayerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXPlayerViewCell.h; sourceTree = "<group>"; };
 		1838ECAE1EFCF2EC0092624D /* JXPlayerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXPlayerViewCell.m; sourceTree = "<group>"; };
-		18402B851F0B4138004FBEB5 /* JXPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXPlayerView.h; sourceTree = "<group>"; };
-		18402B861F0B4138004FBEB5 /* JXPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXPlayerView.m; sourceTree = "<group>"; };
 		18BEAD701EF920B90025FB77 /* TableViewPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableViewPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18BEAD741EF920B90025FB77 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18BEAD761EF920B90025FB77 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -36,8 +32,6 @@
 		18BEAD7F1EF920B90025FB77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18BEAD821EF920B90025FB77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18BEAD841EF920B90025FB77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		18BEAD8C1EF926670025FB77 /* JXPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXPlayer.h; sourceTree = "<group>"; };
-		18BEAD8D1EF926670025FB77 /* JXPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXPlayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,10 +117,6 @@
 		18BEAD8B1EF926480025FB77 /* JXTableViewPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				18BEAD8C1EF926670025FB77 /* JXPlayer.h */,
-				18BEAD8D1EF926670025FB77 /* JXPlayer.m */,
-				18402B851F0B4138004FBEB5 /* JXPlayerView.h */,
-				18402B861F0B4138004FBEB5 /* JXPlayerView.m */,
 			);
 			path = JXTableViewPlayer;
 			sourceTree = "<group>";
@@ -206,8 +196,6 @@
 				1838ECAB1EFCF2CD0092624D /* ViewController.m in Sources */,
 				1838ECAF1EFCF2EC0092624D /* JXPlayerViewCell.m in Sources */,
 				1838ECA71EFCF29D0092624D /* UIView+Frame.m in Sources */,
-				18402B871F0B4138004FBEB5 /* JXPlayerView.m in Sources */,
-				18BEAD8E1EF926670025FB77 /* JXPlayer.m in Sources */,
 				18BEAD781EF920B90025FB77 /* AppDelegate.m in Sources */,
 				18BEAD751EF920B90025FB77 /* main.m in Sources */,
 			);
