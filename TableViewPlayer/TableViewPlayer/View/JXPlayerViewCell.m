@@ -9,11 +9,13 @@
 #import "JXPlayerViewCell.h"
 #import "UIView+Frame.h"
 
-
 #define scaleW 0.95
 #define scaleH 0.6
 
+
 @interface JXPlayerViewCell ()
+
+@property (strong, nonatomic)UIView *centerView;
 
 @end
 
@@ -35,11 +37,18 @@
         
         _centerView.backgroundColor = [UIColor orangeColor];
         
-        _centerView.clipsToBounds = YES;
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playClick)];
         
-        _centerView.layer.cornerRadius = 5;
+        [_centerView addGestureRecognizer:tapGesture];
+        
+        
     }
     return _centerView;
+}
+
+- (void)playClick
+{
+    [self.delegate playWithCell:self withIndexPath:self.indexPath];
 }
 
 

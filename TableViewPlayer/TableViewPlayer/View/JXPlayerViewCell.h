@@ -7,13 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+@class JXPlayerViewCell;
+
+
+@protocol JXPlayerViewCellDelegate <NSObject>
+
+- (void)playWithCell:(JXPlayerViewCell *)cell withIndexPath:(NSIndexPath *)indexPath;
+
+@end
+
 
 @interface JXPlayerViewCell : UITableViewCell
 
-@property (strong, nonatomic)UIView *centerView;
+
+@property (strong, nonatomic,readonly)UIView *centerView;
+
+@property (weak, nonatomic)id<JXPlayerViewCellDelegate> delegate;
+
+@property (strong, nonatomic)NSIndexPath *indexPath ;
 
 - (void)setUpView;
-
-
 
 @end

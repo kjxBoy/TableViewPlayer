@@ -59,6 +59,7 @@
 			children = (
 				1838ECA91EFCF2CD0092624D /* ViewController.h */,
 				1838ECAA1EFCF2CD0092624D /* ViewController.m */,
+				1838ECAC1EFCF2EC0092624D /* View */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -69,7 +70,8 @@
 				1838ECAD1EFCF2EC0092624D /* JXPlayerViewCell.h */,
 				1838ECAE1EFCF2EC0092624D /* JXPlayerViewCell.m */,
 			);
-			path = View;
+			name = View;
+			path = ../View;
 			sourceTree = "<group>";
 		};
 		18BEAD671EF920B90025FB77 = {
@@ -94,7 +96,6 @@
 				18BEAD8B1EF926480025FB77 /* JXTableViewPlayer */,
 				1838ECA41EFCF29D0092624D /* Category */,
 				1838ECA81EFCF2CD0092624D /* ViewController */,
-				1838ECAC1EFCF2EC0092624D /* View */,
 				18BEAD761EF920B90025FB77 /* AppDelegate.h */,
 				18BEAD771EF920B90025FB77 /* AppDelegate.m */,
 				18BEAD7C1EF920B90025FB77 /* Main.storyboard */,

@@ -10,6 +10,16 @@
 
 @implementation UIView (Frame)
 
+- (CGFloat)jx_X
+{
+    return self.frame.origin.x;
+}
+
+- (CGFloat)jx_Y
+{
+    return self.frame.origin.y;
+}
+
 - (CGFloat)width
 {
     return self.bounds.size.width;
@@ -20,6 +30,15 @@
     return self.bounds.size.height;
 }
 
+- (CGFloat)centerX
+{
+    return self.center.x;
+}
+
+- (CGFloat)centerY
+{
+    return self.center.y;
+}
 
 
 - (void)setWidth:(CGFloat)width{
@@ -46,5 +65,19 @@
     self.center = point;
 }
 
+
+- (void)setJx_X:(CGFloat)x
+{
+    CGRect frame = self.frame;
+    frame.origin.x = x;
+    self.frame = frame;
+}
+
+- (void)setJx_Y:(CGFloat)y
+{
+    CGRect frame = self.frame;
+    frame.origin.y = y;
+    self.frame = frame;
+}
 
 @end
