@@ -9,15 +9,16 @@
 #import "ViewController.h"
 #import "UIView+Frame.h"
 #import "JXPlayerViewCell.h"
+#import "JXPlayView.h"
 
 #define screenWidth [UIScreen mainScreen].bounds.size.width
 #define screenHeight [UIScreen mainScreen].bounds.size.height
 
-static NSString *playUrl = @"http://baobab.cdn.wandoujia.com/14468618701471.mp4";
+static NSString *playUrl = @"http://flv2.bn.netease.com/videolib3/1707/10/mKkoJ3091/SD/mKkoJ3091-mobile.mp4";
 
 static NSString *cellId = @"cellId";
 
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,JXPlayerViewCellDelegate>
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,JXPlayerViewCellDelegate,JXPlayViewDelegate>
 
 @property (strong, nonatomic)NSIndexPath *indexPath ;
 
@@ -29,9 +30,11 @@ static NSString *cellId = @"cellId";
 
 @property (strong, nonatomic)UIView *smallShowView;
 
-@property (strong,nonatomic)AVPlayerLayer *playerLayer;
-
 @property (weak, nonatomic)UITableView * tableView;
+
+@property (strong, nonatomic)JXPlayView *playView;
+
+@property (assign, nonatomic)CGRect oldFrame;
 
 @end
 
@@ -39,13 +42,14 @@ static NSString *cellId = @"cellId";
 
 @implementation ViewController
 
-- (AVPlayerLayer *)playerLayer
+
+- (JXPlayView *)playView
 {
-    if (_playerLayer == nil) {
-        _playerLayer = [AVPlayerLayer playerLayerWithPlayer:nil];
-        _playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+    if (_playView == nil) {
+        _playView = [[JXPlayView alloc] init];
+        _playView.delegate = self;
     }
-    return _playerLayer;
+    return _playView;
 }
 
 - (UIView *)smallShowView
@@ -86,13 +90,13 @@ static NSString *cellId = @"cellId";
 #pragma mark - 视频列表
 - (void)cellRemove
 {
-    [self.playerLayer removeFromSuperlayer];
+    [self.playView removeFromSuperview];
     
     [UIView animateWithDuration:0.1 animations:^{
-        self.playerLayer.frame = self.smallShowView.bounds;
+        self.playView.frame = self.smallShowView.bounds;
     } completion:^(BOOL finished) {
-        
-        [self.smallShowView.layer addSublayer:self.playerLayer];
+
+        [self.smallShowView addSubview:self.playView];
         
         [UIView animateWithDuration:0.25 animations:^{
             self.smallShowView.jx_X = screenWidth * 0.5;
@@ -102,16 +106,18 @@ static NSString *cellId = @"cellId";
 
 - (void)cellShowWithCell:(JXPlayerViewCell *)cell andScrollView:(UIScrollView *)scrollView
 {
-    [self.playerLayer removeFromSuperlayer];
+    [self.playView removeFromSuperview];
     
     self.smallShowView.jx_X = screenWidth;
     
     [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
         
-        self.playerLayer.frame = [self cellFrame:cell];
+        self.playView.frame = [self cellFrame:cell];
+        
         
     } completion:^(BOOL finished) {
-        [scrollView.layer addSublayer:self.playerLayer];
+        
+        [scrollView addSubview:self.playView];
     }];
 }
 
@@ -131,14 +137,13 @@ static NSString *cellId = @"cellId";
 
 - (void)coverSmallPlayerViewWithCell:(JXPlayerViewCell *)cell withScrollView:(UIScrollView *)scrollView
 {
-    [self.playerLayer removeFromSuperlayer];
+    [self.playView removeFromSuperview];
     
-    self.playerLayer.frame = [self cellFrame:cell];
+    self.playView.frame = [self cellFrame:cell];
     
     self.smallShowView.jx_X = screenWidth;
     
-    [scrollView.layer addSublayer:self.playerLayer];
-
+    [scrollView addSubview:self.playView];
 }
 
 //重设设置self.player
@@ -175,6 +180,7 @@ static NSString *cellId = @"cellId";
                 [self.player play];
             }else{
                 NSLog(@"状态未知");
+                self.indexPath = nil;
             }
         }
     });
@@ -243,16 +249,16 @@ static NSString *cellId = @"cellId";
 #pragma mark - JXPlayerViewCellDelegate
 - (void)playWithCell:(JXPlayerViewCell *)cell withIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.indexPath && indexPath.row == self.indexPath.row) return;
-    
-    self.indexPath = indexPath;
+    if (self.indexPath && indexPath.row == self.indexPath.row)   return;
     
     if (self.smallShowView.jx_X < screenWidth - 10) {
         
         self.smallShowView.jx_X = screenWidth;
-        [self.playerLayer removeFromSuperlayer];
         
+        [self.playView removeFromSuperview];
     }
+    
+    self.indexPath = indexPath;
     
     if (!_remove) {
         [self removePlayObserver];
@@ -260,11 +266,40 @@ static NSString *cellId = @"cellId";
     
     [self resetPlayerWithPlayUrl:self.playUrl];
     
-    self.playerLayer.frame = [self cellFrame:cell];
-    self.playerLayer.player = self.player;
+    self.playView.frame = [self cellFrame:cell];
     
-    [self.tableView.layer addSublayer:self.playerLayer];
+    [self.playView setUpPlayer:self.player];
+    
+    [self.tableView addSubview:self.playView];
 
+}
+
+#pragma mark - JXPlayViewDelegate
+- (void)playViewClick:(JXPlayView *)playView
+{
+    [playView removeFromSuperview];
+    
+    //cell屏 & 小屏
+    if (playView.width < screenWidth - 10) {
+        
+        self.oldFrame = playView.frame;
+        
+        [self.view addSubview:playView];
+        
+        playView.frame = [UIScreen mainScreen].bounds;
+        
+        return;
+    }
+    
+    //全屏
+    playView.frame = self.oldFrame;
+    
+    if (self.smallShowView.jx_X == screenWidth) {
+        [self.tableView addSubview:playView];
+    }else{
+        [self.smallShowView addSubview:playView];
+    }
+    
 }
 
 #pragma mark - 其他
